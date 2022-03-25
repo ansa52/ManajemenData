@@ -1,6 +1,6 @@
 
-## Status Message
 
+## Status Message
 status_details <- paste0(
   "Hello World")
 

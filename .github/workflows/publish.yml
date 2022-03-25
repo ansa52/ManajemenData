@@ -2,20 +2,20 @@ name: Publish
 
 on:
   schedule:
-    - cron: '15,45 * * * *'  # twice every hour.
+    - cron: '5,15 * * * *'  # twice every hour.
 
 jobs:
   publish-data:
     runs-on: macOS-latest
     env:
-      ELEPHANT_SQL_DBNAME: ${{ secrets.ELEPHANT_SQL_DBNAME }}
-      ELEPHANT_SQL_HOST: ${{ secrets.ELEPHANT_SQL_HOST }}
-      ELEPHANT_SQL_USER: ${{ secrets.ELEPHANT_SQL_USER }}
-      ELEPHANT_SQL_PASSWORD: ${{ secrets.ELEPHANT_SQL_PASSWORD }}
-      TWITTER_CONSUMER_API_KEY: ${{ secrets.TWITTER_CONSUMER_API_KEY }}
-      TWITTER_CONSUMER_API_SECRET: ${{ secrets.TWITTER_CONSUMER_API_SECRET }}
-      TWITTER_ACCESS_TOKEN: ${{ secrets.TWITTER_ACCESS_TOKEN }}
-      TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.TWITTER_ACCESS_TOKEN_SECRET }}
+      #KBOT_ELEPHANT_SQL_DBNAME: ${{ secrets.ELEPHANT_SQL_DBNAME }}
+      #KBOT_ELEPHANT_SQL_HOST: ${{ secrets.ELEPHANT_SQL_HOST }}
+      #KBOT_ELEPHANT_SQL_USER: ${{ secrets.ELEPHANT_SQL_USER }}
+      #KBOT_ELEPHANT_SQL_PASSWORD: ${{ secrets.ELEPHANT_SQL_PASSWORD }}
+      KBOT_TWITTER_CONSUMER_API_KEY: ${{ secrets.KBOT_TWITTER_CONSUMER_API_KEY }}
+      KBOT_TWITTER_CONSUMER_API_SECRET: ${{ secrets.KBOT_TWITTER_CONSUMER_API_SECRET }}
+      KBOT_TWITTER_ACCESS_TOKEN: ${{ secrets.KBOT_TWITTER_ACCESS_TOKEN }}
+      KBOT_TWITTER_ACCESS_TOKEN_SECRET: ${{ secrets.KBOT_TWITTER_ACCESS_TOKEN_SECRET }}
     steps:
       - uses: actions/checkout@v2
       - uses: r-lib/actions/setup-r@master

@@ -17,6 +17,7 @@ data <- dbGetQuery(con, query)
 
 ## Status Message
 status_details <- paste0(
+  Sys.Date(),
   "Nama Pemain: ", data$firstname[1], " ", "Negara: ",data$country[1], "\n",
   "Nama Pemain: ", data$firstname[2], " ", "Negara: ",data$country[2], "\n"
 )

@@ -11,15 +11,24 @@ con <- dbConnect(drv,
                  password = Sys.getenv("KBOT_ELEPHANT_SQL_PASSWORD")
 )
 
-query <- 'SELECT * FROM "public"."players"'
-
+#query <- 'SELECT * FROM "public"."players"'
+query <- 'SELECT * FROM "public"."posisi"'
 data <- dbGetQuery(con, query)
+
+## animate plot
+library(gganimate)
+library(ggplot2)
+library(tidyverse)
+
+p <- ggplot(data, aes(x=V2,y=V1)) + geom_path() + geom_point(aes(group = time)) +
+  transition_reveal(along = time)
+p <- animate(p,renderer = gifski_renderer())
+anim_save("anime.gif", animation = p)
 
 ## Status Message
 status_details <- paste0(
   Sys.Date(), "\n",
-  "Nama Pemain: ", data$firstname[1], " ", "Negara: ",data$country[1], "\n",
-  "Nama Pemain: ", data$firstname[2], " ", "Negara: ",data$country[2], "\n"
+  "Strava Plot", "\n"
 )
 
 # Publish to Twitter
@@ -37,6 +46,7 @@ kambing_token <- rtweet::create_token(
 ## Post the image to Twitter
 rtweet::post_tweet(
   status = status_details,
+  media = "anime.gif",
   token = kambing_token
 )
 

@@ -38,4 +38,4 @@ rtweet::post_tweet(
   token = kambing_token
 )
 
-#on.exit(dbDisconnect(con))
+on.exit(dbDisconnect(con))

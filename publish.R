@@ -1,8 +1,26 @@
+#load library
+library(RPostgreSQL)
 
+drv <- dbDriver("PostgreSQL")
+
+con <- dbConnect(drv,
+                 dbname = Sys.getenv("KBOT_ELEPHANT_SQL_DBNAME"), 
+                 host = Sys.getenv("KBOT_ELEPHANT_SQL_HOST"),
+                 port = 5432,
+                 user = Sys.getenv("KBOT_ELEPHANT_SQL_USER"),
+                 password = Sys.getenv("KBOT_ELEPHANT_SQL_PASSWORD")
+)
+
+query <- 'SELECT * FROM "public"."players"'
+
+data <- dbGetQuery(con, query)
 
 ## Status Message
 status_details <- paste0(
-  "Hello World")
+  "Daftar Pemain Bola:", "\n",
+  data$player_id[1], " ", data$firstname[1], " ", $data$country[1], "\n",
+  data$player_id[1], " ", data$firstname[1], " ", $data$country[1], "\n"
+)
 
 # Publish to Twitter
 library(rtweet)

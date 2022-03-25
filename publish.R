@@ -17,9 +17,7 @@ data <- dbGetQuery(con, query)
 
 ## Status Message
 status_details <- paste0(
-  "Daftar Pemain Bola:", "\n",
-  data$player_id[1], " ", data$firstname[1], " ", $data$country[1], "\n",
-  data$player_id[1], " ", data$firstname[1], " ", $data$country[1], "\n"
+  data
 )
 
 # Publish to Twitter

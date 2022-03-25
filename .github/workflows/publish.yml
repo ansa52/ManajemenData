@@ -2,16 +2,16 @@ name: Publish
 
 on:
   schedule:
-    - cron: '5,15 * * * *'  # twice every hour.
+    - cron: '*/5 * * * *'  # twice every hour.
 
 jobs:
   publish-data:
     runs-on: macOS-latest
     env:
-      #KBOT_ELEPHANT_SQL_DBNAME: ${{ secrets.ELEPHANT_SQL_DBNAME }}
-      #KBOT_ELEPHANT_SQL_HOST: ${{ secrets.ELEPHANT_SQL_HOST }}
-      #KBOT_ELEPHANT_SQL_USER: ${{ secrets.ELEPHANT_SQL_USER }}
-      #KBOT_ELEPHANT_SQL_PASSWORD: ${{ secrets.ELEPHANT_SQL_PASSWORD }}
+      KBOT_ELEPHANT_SQL_DBNAME: ${{ secrets.ELEPHANT_SQL_DBNAME }}
+      KBOT_ELEPHANT_SQL_HOST: ${{ secrets.ELEPHANT_SQL_HOST }}
+      KBOT_ELEPHANT_SQL_USER: ${{ secrets.ELEPHANT_SQL_USER }}
+      KBOT_ELEPHANT_SQL_PASSWORD: ${{ secrets.ELEPHANT_SQL_PASSWORD }}
       KBOT_TWITTER_CONSUMER_API_KEY: ${{ secrets.KBOT_TWITTER_CONSUMER_API_KEY }}
       KBOT_TWITTER_CONSUMER_API_SECRET: ${{ secrets.KBOT_TWITTER_CONSUMER_API_SECRET }}
       KBOT_TWITTER_ACCESS_TOKEN: ${{ secrets.KBOT_TWITTER_ACCESS_TOKEN }}
@@ -21,8 +21,8 @@ jobs:
       - uses: r-lib/actions/setup-r@master
       - name: Install rtweet package
         run: Rscript -e 'install.packages("rtweet", dependencies = TRUE)'
-      - name: Install ggplot2 package
-        run: Rscript -e 'install.packages("ggplot2", dependencies = TRUE)'
+      #- name: Install ggplot2 package
+       # run: Rscript -e 'install.packages("ggplot2", dependencies = TRUE)'
       - name: Install dplyr package
         run: Rscript -e 'install.packages("dplyr", dependencies = TRUE)'
       - name: Install RPostgreSQL package

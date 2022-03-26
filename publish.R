@@ -18,7 +18,7 @@ data <- dbGetQuery(con, query)
 ## animate plot
 library(gganimate)
 library(ggplot2)
-library(tidyverse)
+#library(tidyverse)
 
 p <- ggplot(data, aes(x=lng,y=lat)) + geom_path() + geom_point(aes(group = time)) +
   transition_reveal(along = time)

@@ -20,7 +20,7 @@ library(gganimate)
 library(ggplot2)
 library(tidyverse)
 
-p <- ggplot(data, aes(x=V2,y=V1)) + geom_path() + geom_point(aes(group = time)) +
+p <- ggplot(data, aes(x=lng,y=lat)) + geom_path() + geom_point(aes(group = time)) +
   transition_reveal(along = time)
 p <- animate(p,renderer = gifski_renderer())
 anim_save("anime.gif", animation = p)
